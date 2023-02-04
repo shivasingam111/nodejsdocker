@@ -8,4 +8,17 @@ services:
        - ./:/app
        - /app/node_modules
      environment:
-       - PORT=3000     
+       - PORT=3000
+     depends_on:
+       - mongo  
+
+  mongo:
+     image: mongo:5.0
+     environment:
+       - MONGO_INITDB_ROOT_USERNAME=raj
+       - MONGO_INITDB_ROOT_PASSWORD=1234
+     volumes:
+       - mongo-dbname:/data/db
+
+volumes:
+  mongo-dbname:
